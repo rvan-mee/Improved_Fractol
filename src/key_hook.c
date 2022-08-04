@@ -100,5 +100,5 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 		|| keydata.key == MLX_KEY_UP || keydata.key == MLX_KEY_C \
 		|| keydata.key == MLX_KEY_PAGE_DOWN || keydata.key == MLX_KEY_PAGE_UP \
 		|| keydata.key == MLX_KEY_B) && keydata.action == MLX_PRESS)
-		change_image(root);
+		update_image(root);
 }

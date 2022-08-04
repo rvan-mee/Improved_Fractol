@@ -17,7 +17,7 @@ void	put_rainbow(t_root *root, int x, int y, int i)
 	new_color = 0;
 	if (i == root->r_screen.iteri + 1)
 	{
-		mlx_put_pixel(root->img, x, y, 0);
+		mlx_put_pixel(root->img, x, y, 255);
 		return ;
 	}
 	if (i < (root->r_screen.iteri / 3) * 1)

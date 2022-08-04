@@ -54,5 +54,5 @@ void	scroll_hook(double xdelta, double ydelta, void *param)
 	y_new -= y_start;
 	root->r_screen.x_offset -= x_new;
 	root->r_screen.y_offset -= y_new;
-	change_image(root);
+	update_image(root);
 }

@@ -9,6 +9,7 @@ SRC =	main.c			\
 		mouse_hook.c	\
 		parsing.c		\
 		vela.c			\
+		threads.c		\
 		
 TARGET = fractol
 OBJDIR = objs

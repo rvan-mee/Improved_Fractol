@@ -84,10 +84,11 @@ int	main(int argc, char *argv[])
 	t_root	root;
 
 	check_input(argc, argv, &root);
+	init_mutexes(&root);
 	init_mlx(&root);
 	if (root.set == 3)
 		init_ship(&root);
-	change_image(&root);
+	update_image(&root);
 	mlx_key_hook(root.mlx, &key_hook, &root);
 	mlx_scroll_hook(root.mlx, &scroll_hook, &root);
 	mlx_loop(root.mlx);

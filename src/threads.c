@@ -1,22 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   threads.c                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/08/04 13:25:32 by rvan-mee      #+#    #+#                 */
+/*   Updated: 2022/08/04 13:29:36 by rvan-mee      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <fractol.h>
 
-void	create_threads(t_root *root)
+void	update_image(t_root *root)
 {
-	int	i;
+	pthread_t	threadpool[THREADS];
+	int			i;
 
 	i = 0;
-	root->threadpool = malloc(sizeof(pthread_t) * THREAD_COUNT);
-	if (!root->threadpool)
-		exit_error("Thread creation error\n");
-	while (i < THREAD_COUNT)
+	root->y = 0;
+	while (i < THREADS)
 	{
-		pthread_create(root->threadpool[i], NULL, change_image, root);
-		pthread_detach(root->threadpool[i]);
+		pthread_create(&threadpool[i], NULL, change_image, root);
+		i++;
+	}
+	i = 0;
+	while (i < THREADS)
+	{
+		pthread_join(threadpool[i], NULL);
+		i++;
 	}
 }
 
 void	init_mutexes(t_root *root)
 {
+	root->y = 0;
 	if (pthread_mutex_init(&root->image_mutex, NULL) == -1)
 		exit_error("Mutex creation error\n");
 }
