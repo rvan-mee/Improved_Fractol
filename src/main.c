@@ -1,5 +1,8 @@
 #include "fractol.h"
 
+int32_t	WIDTH = 1920;
+int32_t	HEIGHT = 1080;
+
 // Initiate all the base colors for the rainbow mode.
 static void	init_rainbow_colors(t_root *root)
 {
@@ -47,7 +50,7 @@ static int	init_mlx(t_root *root)
 {
 	init_options(root);
 	init_rainbow_colors(root);
-	root->mlx = mlx_init(WIDTH, HEIGHT, "fract-ol", false);
+	root->mlx = mlx_init(WIDTH, HEIGHT, "fract-ol", true);
 	if (root->mlx == NULL)
 		exit_error("MLX error\n");
 	root->r_screen.iteri = 100;
@@ -70,7 +73,6 @@ static int	init_mlx(t_root *root)
 // the burning ship fractol in a better position.
 static void	init_ship(t_root *root)
 {
-	root->set = 3;
 	root->r_screen.zoom = 3;
 	root->r_screen.x_scale = 0.00012056327160493829;
 	root->r_screen.y_scale = -0.00014288980338363055;
@@ -86,11 +88,17 @@ int	main(int argc, char *argv[])
 	check_input(argc, argv, &root);
 	init_mutexes(&root);
 	init_mlx(&root);
-	if (root.set == 3)
+	if (root.set == VELA)
 		init_ship(&root);
-	update_image(&root);
 	mlx_key_hook(root.mlx, &key_hook, &root);
-	mlx_scroll_hook(root.mlx, &scroll_hook, &root);
+	if (root.set != MOUSE)
+	{
+		root.r_screen.iteri = 500;
+		update_image(&root);
+		mlx_scroll_hook(root.mlx, &scroll_hook, &root);
+	}
+	else
+		mlx_loop_hook(root.mlx, mouse_hook, &root);
 	mlx_loop(root.mlx);
 	mlx_delete_image(root.mlx, root.img);
 	mlx_terminate(root.mlx);

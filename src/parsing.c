@@ -42,22 +42,26 @@ static int	ft_strncmp(const char *s1, const char *s2, size_t n)
 void	check_input(int argc, char **argv, t_root *root)
 {
 	if (argc == 2 && !(ft_strncmp(argv[1], "mandelbrot", 11)))
-		root->set = 1;
+		root->set = MANDELBROT;
 	else if (argc == 2 && !(ft_strncmp(argv[1], "vela", 5)))
-		root->set = 3;
+		root->set = VELA;
+	else if (argc == 2 && !(ft_strncmp(argv[1], "mouse", 6)))
+	{
+		HEIGHT = 400;
+		WIDTH = 800;
+		root->set = MOUSE;
+	}
 	else if (argc == 2 && !(ft_strncmp(argv[1], "julia", 6)))
 		exit_error("Use a valid constant\nTry 0.285 + 0.01i\nOr try 0.8i\n");
 	else if (argc == 3 && !(ft_strncmp(argv[1], "julia", 6)))
 	{
-		root->set = 2;
-		root->r_screen.iteri = 10;
+		root->set = JULIA;
 		root->r_julia.x = 0;
 		root->r_julia.y = ft_atof(argv[argc - 1], CHECK_I);
 	}
 	else if (argc == 5 && !(ft_strncmp(argv[1], "julia", 6)))
 	{
-		root->set = 2;
-		root->r_screen.iteri = 10;
+		root->set = JULIA;
 		root->r_julia.x = ft_atof(argv[argc - 3], DONT_CHECK_I);
 		root->r_julia.y = ft_atof(argv[argc - 1], CHECK_I)
 			* ft_atosign(argv[argc - 2]);

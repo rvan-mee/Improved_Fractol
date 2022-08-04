@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/04 13:27:09 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/08/04 13:38:55 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/08/04 17:07:01 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 // Applies the correct funtion to the pixel given the command line input.
 static void	fractal(t_root *root, int x, int y)
 {
-	if (root->set == 1)
+	if (root->set == MANDELBROT)
 		mandelbrot(root, x, y);
-	else if (root->set == 2)
+	else if (root->set == JULIA || root->set == MOUSE)
 		julia(root, x, y);
-	else if (root->set == 3)
+	else if (root->set == VELA)
 		burning_ship(root, x, y);
 }
 
@@ -39,7 +39,6 @@ void	*change_image(void *param)
 	pthread_mutex_unlock(&root->image_mutex);
 	while (y < HEIGHT)
 	{
-		fractal(root, x, y);
 		while (x < WIDTH)
 		{
 			fractal(root, x, y);

@@ -81,19 +81,19 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 	root = (t_root *)param;
 	if (keydata.key == MLX_KEY_ESCAPE)
 		exit(1);
-	else if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS)
+	else if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS && root->set != MOUSE)
 		root->r_screen.y_offset -= (long double)OFFSET / set_zoom_offset(root);
-	else if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
+	else if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS && root->set != MOUSE)
 		root->r_screen.y_offset += (long double)OFFSET / set_zoom_offset(root);
-	else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
+	else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS && root->set != MOUSE)
 		root->r_screen.x_offset -= (long double)OFFSET / set_zoom_offset(root);
-	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
+	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS && root->set != MOUSE)
 		root->r_screen.x_offset += (long double)OFFSET / set_zoom_offset(root);
 	else if ((keydata.key == MLX_KEY_C || keydata.key == MLX_KEY_R \
 			|| keydata.key == MLX_KEY_B) && keydata.action == MLX_PRESS)
 		set_change_image_type(keydata.key, root);
 	else if ((keydata.key == MLX_KEY_PAGE_UP || \
-			keydata.key == MLX_KEY_PAGE_DOWN) && keydata.action == MLX_PRESS)
+			keydata.key == MLX_KEY_PAGE_DOWN) && keydata.action == MLX_PRESS && root->set != MOUSE)
 		set_iteri(keydata.key, root);
 	if ((keydata.key == MLX_KEY_RIGHT || keydata.key == MLX_KEY_LEFT || \
 		keydata.key == MLX_KEY_DOWN || keydata.key == MLX_KEY_R \

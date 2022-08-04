@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/10 12:03:37 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/08/04 14:02:02 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/08/04 18:03:02 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,22 @@
 # define THREADS 4
 # endif
 
-# define WIDTH 1920
-# define HEIGHT 1080 
+extern int32_t	WIDTH;
+extern int32_t	HEIGHT;
 # define FAIL 0
 # define SUCCESS 1
 # define OFFSET 1
 # define ZOOM 3
 # define CHECK_I 1
 # define DONT_CHECK_I 0
+
+enum sets
+{
+	MANDELBROT,
+	JULIA,
+	VELA,
+	MOUSE
+}	t_sets;
 
 typedef struct s_julia {
 	long double	x;
@@ -60,6 +68,8 @@ typedef struct s_root {
 	mlx_t			*mlx;
 	mlx_image_t		*img;
 	pthread_mutex_t	image_mutex;
+	mlx_t			*mouse_mandel_brot;
+	mlx_image_t		*mouse_mandelbrot_img;
 	int32_t			set;
 	int32_t			y;
 }	t_root;
@@ -80,6 +90,9 @@ void		put_single_color(t_root *root, int x, int y, int i);
 int			mandelbrot(t_root *root, long double x, long double y);
 int			burning_ship(t_root *root, long double x, long double y);
 int			julia(t_root *root, long double x, long double y);
+
+void		mouse_hook(void *param);
+
 void		*change_image(void *param);
 
 long double	ft_atof(char *str, int i_check);

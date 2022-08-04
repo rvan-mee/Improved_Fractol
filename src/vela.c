@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   vela.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/08/04 14:11:55 by rvan-mee      #+#    #+#                 */
+/*   Updated: 2022/08/04 14:11:55 by rvan-mee      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 // Keeps calulating the given X and Y values till the set max iterations,
