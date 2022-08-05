@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/10 12:03:37 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/08/05 19:00:40 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/08/05 20:27:14 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void		mandelbrot_helper(t_root *r, int *i, long double i_s, long double r_s);
 int			burning_ship(t_root *root, long double x, long double y);
 int			julia(t_root *root, long double x, long double y);
 
+void		drag_hook(void *param);
 void		mouse_hook(void *param);
 void		create_mandelbrot_picture(t_root *root);
 

@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/04 14:12:08 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/08/04 14:12:08 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/08/05 20:44:44 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,36 @@ void	scroll_hook(double xdelta, double ydelta, void *param)
 	root->r_screen.x_offset -= x_new;
 	root->r_screen.y_offset -= y_new;
 	update_image(root);
+}
+
+void	drag_hook(void *param)
+{
+	t_root *const		root = param;
+	static bool			mouse_down = false;
+	static long double	old_x;
+	static long double	old_y;
+	long double			curr_x;
+	long double			curr_y;
+	int					y;
+	int					x;
+
+	if (mlx_is_mouse_down(root->mlx, MLX_MOUSE_BUTTON_LEFT) == true && mouse_down == false)
+	{
+		mouse_down = true;
+		mlx_get_mouse_pos(root->mlx, &x, &y);
+		old_x = (long double)x * root->r_screen.x_scale + root->r_screen.x_offset;
+		old_y = (long double)y * root->r_screen.y_scale + root->r_screen.y_offset;
+	}
+	else if (mlx_is_mouse_down(root->mlx, MLX_MOUSE_BUTTON_LEFT) == false && mouse_down == true)
+	{
+		mouse_down = false;
+		mlx_get_mouse_pos(root->mlx, &x, &y);
+		curr_x = (long double)x * root->r_screen.x_scale
+		+ root->r_screen.x_offset;
+		curr_y = (long double)y * root->r_screen.y_scale
+		+ root->r_screen.y_offset;
+		root->r_screen.x_offset += old_x - curr_x;
+		root->r_screen.y_offset += old_y - curr_y;
+		update_image(root);
+	}
 }

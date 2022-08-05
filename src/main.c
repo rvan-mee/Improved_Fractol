@@ -19,8 +19,6 @@ static void	init_rainbow_colors(t_root *root)
 	root->r_screen.rainbow_base[10] = 0x000F00FF;
 }
 
-#include <stdio.h>
-
 // Initiate all the color options.
 static void	init_options(t_root *root)
 {
@@ -96,6 +94,7 @@ int	main(int argc, char *argv[])
 	if (root.set != MOUSE)
 	{
 		update_image(&root);
+		mlx_loop_hook(root.mlx, &drag_hook, &root);
 		mlx_scroll_hook(root.mlx, &scroll_hook, &root);
 	}
 	else
