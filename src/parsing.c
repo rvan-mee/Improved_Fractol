@@ -14,7 +14,8 @@ static int	ft_strlen(char *str)
 // Exits program with a selected error message written beforehand.
 void	exit_error(char *error_message)
 {
-	write (1, error_message, ft_strlen(error_message));
+	if (write (1, error_message, ft_strlen(error_message)) == -1)
+		exit(1);
 	exit(1);
 }
 

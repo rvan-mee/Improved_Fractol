@@ -22,7 +22,7 @@
 # include "MLX42/MLX42.h"
 
 # ifndef THREADS
-# define THREADS 4
+# define THREADS 24
 # endif
 
 extern int32_t	WIDTH;
