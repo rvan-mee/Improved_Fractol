@@ -2,7 +2,7 @@
 
 // Returns a color's RGB value based on the input R G and B.
 // Max values should be 255 per color.
-static int	color(int r, int g, int b)
+int	color(int r, int g, int b)
 {
 	return ((r << 24 | g << 16 | b << 8) + 255);
 }

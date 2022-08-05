@@ -51,17 +51,19 @@ static int	init_mlx(t_root *root)
 	init_options(root);
 	init_rainbow_colors(root);
 	root->mlx = mlx_init(WIDTH, HEIGHT, "fract-ol", true);
+	if (root->set == MOUSE)
+		HEIGHT /= 2;
 	if (root->mlx == NULL)
 		exit_error("MLX error\n");
 	root->r_screen.iteri = 100;
 	root->r_screen.x_scale = 2 / (long double)HEIGHT;
+	root->img = mlx_new_image(root->mlx, WIDTH, HEIGHT);
 	root->r_screen.y_scale = 2 / (long double)HEIGHT * -1;
 	root->r_screen.x_offset = -2;
 	root->r_screen.y_offset = 1;
-	root->r_screen.zoom = 1;
+	root->r_screen.zoom = 0;
 	root->r_screen.color = 0x0000FFFF;
 	root->r_screen.color_type = 1;
-	root->img = mlx_new_image(root->mlx, WIDTH, HEIGHT);
 	if (root->img == NULL)
 		exit_error("MLX error\n");
 	if (mlx_image_to_window(root->mlx, root->img, 0, 0) == -1)
@@ -93,12 +95,14 @@ int	main(int argc, char *argv[])
 	mlx_key_hook(root.mlx, &key_hook, &root);
 	if (root.set != MOUSE)
 	{
-		root.r_screen.iteri = 500;
 		update_image(&root);
 		mlx_scroll_hook(root.mlx, &scroll_hook, &root);
 	}
 	else
+	{
+		create_mandelbrot_picture(&root);
 		mlx_loop_hook(root.mlx, mouse_hook, &root);
+	}
 	mlx_loop(root.mlx);
 	mlx_delete_image(root.mlx, root.img);
 	mlx_terminate(root.mlx);

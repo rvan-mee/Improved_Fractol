@@ -47,7 +47,7 @@ void	check_input(int argc, char **argv, t_root *root)
 		root->set = VELA;
 	else if (argc == 2 && !(ft_strncmp(argv[1], "mouse", 6)))
 	{
-		HEIGHT = 400;
+		HEIGHT = 800;
 		WIDTH = 800;
 		root->set = MOUSE;
 	}

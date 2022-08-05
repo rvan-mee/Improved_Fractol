@@ -2,7 +2,7 @@
 
 // Keeps calulating the given X and Y values till the set max iterations,
 // Unless it falls outside of the 2 * 2 threshold.
-static void	mandelbrot_helper(t_root *r, int *i, long double i_s, long double r_s)
+void	mandelbrot_helper(t_root *r, int *i, long double i_s, long double r_s)
 {
 	long double	rl;
 	long double	im;

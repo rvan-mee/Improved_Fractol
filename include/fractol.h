@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/10 12:03:37 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/08/04 18:03:02 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/08/05 19:00:40 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 
 extern int32_t	WIDTH;
 extern int32_t	HEIGHT;
+
 # define FAIL 0
 # define SUCCESS 1
 # define OFFSET 1
@@ -67,9 +68,8 @@ typedef struct s_root {
 	t_julia			r_julia;
 	mlx_t			*mlx;
 	mlx_image_t		*img;
-	pthread_mutex_t	image_mutex;
-	mlx_t			*mouse_mandel_brot;
 	mlx_image_t		*mouse_mandelbrot_img;
+	pthread_mutex_t	image_mutex;
 	int32_t			set;
 	int32_t			y;
 }	t_root;
@@ -83,15 +83,18 @@ void		scroll_hook(double xdelta, double ydelta, void *param);
 void		update_image(t_root *root);
 void		init_mutexes(t_root *root);
 
+int			color(int r, int g, int b);
 void		put_rainbow(t_root *root, int x, int y, int i);
 void		put_black_to_white(t_root *root, int x, int y, int i);
 void		put_single_color(t_root *root, int x, int y, int i);
 
 int			mandelbrot(t_root *root, long double x, long double y);
+void		mandelbrot_helper(t_root *r, int *i, long double i_s, long double r_s);
 int			burning_ship(t_root *root, long double x, long double y);
 int			julia(t_root *root, long double x, long double y);
 
 void		mouse_hook(void *param);
+void		create_mandelbrot_picture(t_root *root);
 
 void		*change_image(void *param);
 
