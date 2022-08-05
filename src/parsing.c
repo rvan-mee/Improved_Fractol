@@ -68,5 +68,5 @@ void	check_input(int argc, char **argv, t_root *root)
 			* ft_atosign(argv[argc - 2]);
 	}
 	else
-		exit_error("Please use a valid argument\nmandelbrot\njulia\nvela\n");
+		exit_error("Please use a valid argument:\nmandelbrot\njulia\nvela\nmouse\n");
 }
