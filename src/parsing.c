@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   parsing.c                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: rvan-mee <rvan-mee@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/08/07 12:54:38 by rvan-mee      #+#    #+#                 */
+/*   Updated: 2022/08/07 13:53:13 by rvan-mee      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 // Returns the length of a string.
@@ -39,34 +51,44 @@ static int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return (0);
 }
 
-// Checks if the command line input is correct and selects the proper settings.
-void	check_input(int argc, char **argv, t_root *root)
+static void	setup_julia(int argc, char **argv, t_root *root)
 {
-	if (argc == 2 && !(ft_strncmp(argv[1], "mandelbrot", 11)))
-		root->set = MANDELBROT;
-	else if (argc == 2 && !(ft_strncmp(argv[1], "vela", 5)))
-		root->set = VELA;
-	else if (argc == 2 && !(ft_strncmp(argv[1], "mouse", 6)))
-	{
-		HEIGHT = 800;
-		WIDTH = 800;
-		root->set = MOUSE;
-	}
-	else if (argc == 2 && !(ft_strncmp(argv[1], "julia", 6)))
-		exit_error("Use a valid constant\nTry 0.285 + 0.01i\nOr try 0.8i\n");
-	else if (argc == 3 && !(ft_strncmp(argv[1], "julia", 6)))
+	if (argc == 3)
 	{
 		root->set = JULIA;
 		root->r_julia.x = 0;
 		root->r_julia.y = ft_atof(argv[argc - 1], CHECK_I);
 	}
-	else if (argc == 5 && !(ft_strncmp(argv[1], "julia", 6)))
+	else
 	{
 		root->set = JULIA;
 		root->r_julia.x = ft_atof(argv[argc - 3], DONT_CHECK_I);
 		root->r_julia.y = ft_atof(argv[argc - 1], CHECK_I)
 			* ft_atosign(argv[argc - 2]);
 	}
+}
+
+// Checks if the command line input is correct and selects the proper settings.
+void	check_input(int argc, char **argv, t_root *root)
+{
+	root->width = 1920;
+	root->height = 1080;
+	if (argc == 2 && !(ft_strncmp(argv[1], "mandelbrot", 11)))
+		root->set = MANDELBROT;
+	else if (argc == 2 && !(ft_strncmp(argv[1], "vela", 5)))
+		root->set = VELA;
+	else if (argc == 2 && !(ft_strncmp(argv[1], "mouse", 6)))
+	{
+		root->height = 800;
+		root->width = 800;
+		root->set = MOUSE;
+	}
+	else if (argc == 2 && !(ft_strncmp(argv[1], "julia", 6)))
+		exit_error("Use a valid constant\nTry 0.285 + 0.01i\nOr try 0.8i\n");
+	else if (argc == 3 && !(ft_strncmp(argv[1], "julia", 6)))
+		setup_julia(argc, argv, root);
+	else if (argc == 5 && !(ft_strncmp(argv[1], "julia", 6)))
+		setup_julia(argc, argv, root);
 	else
 		exit_error("Please use a valid argument:\nmandelbrot\njulia\nvela\nmouse\n");
 }

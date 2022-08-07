@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   key_hook.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: rvan-mee <rvan-mee@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/08/07 13:30:28 by rvan-mee      #+#    #+#                 */
+/*   Updated: 2022/08/07 13:44:52 by rvan-mee      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <fractol.h>
 
 // Cycles through the colors initiated in the function init_colors (main.c).
@@ -76,29 +88,28 @@ static long double	set_zoom_offset(t_root *root)
 // Examples of keys that can be used: page up & down, arrow keys, C and R.
 void	key_hook(mlx_key_data_t keydata, void *param)
 {
-	t_root *root;
+	t_root		*root;
+	const int	key = keydata.key;
 
 	root = (t_root *)param;
 	if (keydata.key == MLX_KEY_ESCAPE)
 		exit(1);
-	else if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS && root->set != MOUSE)
+	else if (key == DOWN && keydata.action == PRESS && root->set != MOUSE)
 		root->r_screen.y_offset -= (long double)OFFSET / set_zoom_offset(root);
-	else if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS && root->set != MOUSE)
+	else if (key == UP && keydata.action == PRESS && root->set != MOUSE)
 		root->r_screen.y_offset += (long double)OFFSET / set_zoom_offset(root);
-	else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS && root->set != MOUSE)
+	else if (key == LEFT && keydata.action == PRESS && root->set != MOUSE)
 		root->r_screen.x_offset -= (long double)OFFSET / set_zoom_offset(root);
-	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS && root->set != MOUSE)
+	else if (key == RIGHT && keydata.action == PRESS && root->set != MOUSE)
 		root->r_screen.x_offset += (long double)OFFSET / set_zoom_offset(root);
-	else if ((keydata.key == MLX_KEY_C || (keydata.key == MLX_KEY_R  && root->set != MOUSE)
-			|| keydata.key == MLX_KEY_B) && keydata.action == MLX_PRESS)
+	else if (keydata.action == PRESS && (key == C || key == B || \
+			(key == R && root->set != MOUSE)))
 		set_change_image_type(keydata.key, root);
-	else if ((keydata.key == MLX_KEY_PAGE_UP || \
-			keydata.key == MLX_KEY_PAGE_DOWN) && keydata.action == MLX_PRESS)
-		set_iteri(keydata.key, root);
-	if ((keydata.key == MLX_KEY_RIGHT || keydata.key == MLX_KEY_LEFT || \
-		keydata.key == MLX_KEY_DOWN || keydata.key == MLX_KEY_R \
-		|| keydata.key == MLX_KEY_UP || keydata.key == MLX_KEY_C \
-		|| keydata.key == MLX_KEY_PAGE_DOWN || keydata.key == MLX_KEY_PAGE_UP \
-		|| keydata.key == MLX_KEY_B) && keydata.action == MLX_PRESS)
+	else if ((key == P_UP || \
+			key == P_DOWN) && keydata.action == PRESS)
+		set_iteri(key, root);
+	if ((key == RIGHT || key == LEFT || key == DOWN || key == UP \
+		|| key == R || key == C || key == P_DOWN || key == P_UP \
+		|| key == B) && keydata.action == PRESS)
 		update_image(root);
 }

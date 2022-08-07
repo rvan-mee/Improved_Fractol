@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/04 15:41:04 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/08/07 12:48:18 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/08/07 13:50:26 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,14 @@ void	mouse_hook(void *param)
 	int32_t			y;
 
 	mlx_get_mouse_pos(root->mlx, &x, &y);
-	y -= HEIGHT;
+	y -= root->height;
 	root->r_julia.x = x * root->r_screen.x_scale + root->r_screen.x_offset;
 	root->r_julia.y = y * root->r_screen.y_scale + root->r_screen.y_offset;
-	if (mlx_is_mouse_down(root->mlx, MLX_MOUSE_BUTTON_LEFT) && mouse_down == false)
+	if (mlx_is_mouse_down(root->mlx, MLX_MOUSE_BUTTON_LEFT)
+		&& mouse_down == false)
 	{
-		printf("Current julia input: real: %.3Lf imaginary: %.3Lfi\n", root->r_julia.x, root->r_julia.y);
+		printf("Current julia input: real: %.3Lf imaginary: %.3Lfi\n", \
+										root->r_julia.x, root->r_julia.y);
 		mouse_down = true;
 	}
 	if (mlx_is_mouse_down(root->mlx, MLX_MOUSE_BUTTON_LEFT) == false)
@@ -41,10 +43,10 @@ static void	put_black_white_mouse(t_root *root, int x, int y, int i)
 	pei = (double)i / root->r_screen.iteri * 255;
 	if (i == root->r_screen.iteri + 1)
 	{
-		mlx_put_pixel(root->mouse_mandelbrot_img, x, y, 0xFFFFFFFF);
+		mlx_put_pixel(root->mandelbrot_img, x, y, 0xFFFFFFFF);
 		return ;
 	}
-	mlx_put_pixel(root->mouse_mandelbrot_img, x, y, color(pei, pei, pei));
+	mlx_put_pixel(root->mandelbrot_img, x, y, color(pei, pei, pei));
 }
 
 static void	put_single_color_mouse(t_root *root, int x, int y, int i)
@@ -55,10 +57,10 @@ static void	put_single_color_mouse(t_root *root, int x, int y, int i)
 	j = root->r_screen.all_options;
 	pei = (double)i / root->r_screen.iteri * 255;
 	if (i == root->r_screen.iteri + 1)
-		mlx_put_pixel(root->mouse_mandelbrot_img, x, y, 255);
+		mlx_put_pixel(root->mandelbrot_img, x, y, 255);
 	else
 	{
-		mlx_put_pixel(root->mouse_mandelbrot_img, x, y,
+		mlx_put_pixel(root->mandelbrot_img, x, y,
 			color(root->r_screen.options[j][0] * pei,
 				root->r_screen.options[j][1] * pei,
 				root->r_screen.options[j][2] * pei));
@@ -67,30 +69,27 @@ static void	put_single_color_mouse(t_root *root, int x, int y, int i)
 
 void	create_mandelbrot_picture(t_root *root)
 {
-	long double	r_start;
-	long double	i_start;
-	double		pei;
-	int32_t		i;
-	int32_t		x;
-	int32_t		y;
+	t_mandel	mandel;
 
-	x = 0;
-	while (x < WIDTH)
+	mandel.x = 0;
+	while (mandel.x < root->width)
 	{
-		y = 0;
-		while (y < HEIGHT)
+		mandel.y = 0;
+		while (mandel.y < root->height)
 		{
-			i = 0;
-			r_start = x * root->r_screen.x_scale + root->r_screen.x_offset;
-			i_start = y * root->r_screen.y_scale + root->r_screen.y_offset;
-			mandelbrot_helper(root, &i, i_start, r_start);
-			pei = (double)i / root->r_screen.iteri * 255;
+			mandel.i = 0;
+			mandel.r_start = mandel.x * \
+			root->r_screen.x_scale + root->r_screen.x_offset;
+			mandel.i_start = mandel.y * \
+			root->r_screen.y_scale + root->r_screen.y_offset;
+			mandelbrot_helper(root, &mandel.i, mandel.i_start, mandel.r_start);
+			mandel.pei = (double)mandel.i / root->r_screen.iteri * 255;
 			if (root->r_screen.color_type == 1)
-				put_single_color_mouse(root, x, y, i);
+				put_single_color_mouse(root, mandel.x, mandel.y, mandel.i);
 			else if (root->r_screen.color_type == 2)
-				put_black_white_mouse(root, x, y, i);
-			y++;
+				put_black_white_mouse(root, mandel.x, mandel.y, mandel.i);
+			mandel.y++;
 		}
-		x++;
+		mandel.x++;
 	}
 }

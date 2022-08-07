@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   mandelbrot.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: rvan-mee <rvan-mee@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/08/07 13:22:08 by rvan-mee      #+#    #+#                 */
+/*   Updated: 2022/08/07 13:22:09 by rvan-mee      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <fractol.h>
 
 // Keeps calulating the given X and Y values till the set max iterations,

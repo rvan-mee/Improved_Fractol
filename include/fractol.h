@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/10 12:03:37 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/08/05 20:27:14 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/08/07 14:35:02 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,8 @@
 # include "MLX42/MLX42.h"
 
 # ifndef THREADS
-# define THREADS 24
+#  define THREADS 24
 # endif
-
-extern int32_t	WIDTH;
-extern int32_t	HEIGHT;
 
 # define FAIL 0
 # define SUCCESS 1
@@ -35,7 +32,18 @@ extern int32_t	HEIGHT;
 # define CHECK_I 1
 # define DONT_CHECK_I 0
 
-enum sets
+# define DOWN MLX_KEY_DOWN
+# define UP MLX_KEY_UP
+# define LEFT MLX_KEY_LEFT
+# define RIGHT MLX_KEY_RIGHT
+# define PRESS MLX_PRESS
+# define C MLX_KEY_C
+# define B MLX_KEY_B
+# define R MLX_KEY_R
+# define P_DOWN MLX_KEY_PAGE_DOWN
+# define P_UP MLX_KEY_PAGE_UP
+
+typedef enum sets
 {
 	MANDELBROT,
 	JULIA,
@@ -64,15 +72,46 @@ typedef struct s_screen {
 }	t_screen;
 
 typedef struct s_root {
+	uint32_t		width;
+	uint32_t		height;
 	t_screen		r_screen;
 	t_julia			r_julia;
 	mlx_t			*mlx;
 	mlx_image_t		*img;
-	mlx_image_t		*mouse_mandelbrot_img;
+	mlx_image_t		*mandelbrot_img;
 	pthread_mutex_t	image_mutex;
 	int32_t			set;
 	int32_t			y;
 }	t_root;
+
+typedef struct s_mandel {
+	long double	r_start;
+	long double	i_start;
+	double		pei;
+	int32_t		i;
+	uint32_t	x;
+	uint32_t	y;
+}	t_mandel;
+
+typedef struct s_drag {
+	long double	old_x;
+	long double	old_y;
+	long double	curr_x;
+	long double	curr_y;
+	bool		previous_mouse_down;
+	bool		is_mouse_down;
+	int			y;
+	int			x;
+}	t_drag;
+
+typedef struct s_scroll {
+	long double	x_start;
+	long double	y_start;
+	long double	x_new;
+	long double	y_new;
+	int32_t		x;
+	int32_t		y;
+}	t_scroll;
 
 int			main(int argc, char *argv[]);
 void		exit_error(char *error_message);
@@ -89,7 +128,8 @@ void		put_black_to_white(t_root *root, int x, int y, int i);
 void		put_single_color(t_root *root, int x, int y, int i);
 
 int			mandelbrot(t_root *root, long double x, long double y);
-void		mandelbrot_helper(t_root *r, int *i, long double i_s, long double r_s);
+void		mandelbrot_helper(t_root *r, int *i, \
+							long double i_s, long double r_s);
 int			burning_ship(t_root *root, long double x, long double y);
 int			julia(t_root *root, long double x, long double y);
 

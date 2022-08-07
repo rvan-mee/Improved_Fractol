@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   ft_atof.c                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: rvan-mee <rvan-mee@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/08/07 13:39:22 by rvan-mee      #+#    #+#                 */
+/*   Updated: 2022/08/07 13:39:22 by rvan-mee      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 // Created to avoid norm errors, would make the check_input_atof

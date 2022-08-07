@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   ft_atosign.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: rvan-mee <rvan-mee@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/08/07 13:39:38 by rvan-mee      #+#    #+#                 */
+/*   Updated: 2022/08/07 13:39:39 by rvan-mee      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 // Takes a string and checks if it is either a + or a - and will

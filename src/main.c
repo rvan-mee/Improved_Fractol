@@ -1,7 +1,16 @@
-#include "fractol.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   main.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: rvan-mee <rvan-mee@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/08/07 13:26:20 by rvan-mee      #+#    #+#                 */
+/*   Updated: 2022/08/07 13:53:07 by rvan-mee      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
-int32_t	WIDTH = 1920;
-int32_t	HEIGHT = 1080;
+#include "fractol.h"
 
 // Initiate all the base colors for the rainbow mode.
 static void	init_rainbow_colors(t_root *root)
@@ -48,15 +57,15 @@ static int	init_mlx(t_root *root)
 {
 	init_options(root);
 	init_rainbow_colors(root);
-	root->mlx = mlx_init(WIDTH, HEIGHT, "fract-ol", true);
+	root->mlx = mlx_init(root->width, root->height, "fract-ol", true);
 	if (root->set == MOUSE)
-		HEIGHT /= 2;
+		root->height /= 2;
 	if (root->mlx == NULL)
 		exit_error("MLX error\n");
 	root->r_screen.iteri = 100;
-	root->r_screen.x_scale = 2 / (long double)HEIGHT;
-	root->img = mlx_new_image(root->mlx, WIDTH, HEIGHT);
-	root->r_screen.y_scale = 2 / (long double)HEIGHT * -1;
+	root->r_screen.x_scale = 2 / (long double)root->height;
+	root->img = mlx_new_image(root->mlx, root->width, root->height);
+	root->r_screen.y_scale = 2 / (long double)root->height * -1;
 	root->r_screen.x_offset = -2;
 	root->r_screen.y_offset = 1;
 	root->r_screen.zoom = 0;
@@ -99,8 +108,8 @@ int	main(int argc, char *argv[])
 	}
 	else
 	{
-		root.mouse_mandelbrot_img = mlx_new_image(root.mlx, WIDTH, HEIGHT);
-		mlx_image_to_window(root.mlx, root.mouse_mandelbrot_img, 0, HEIGHT);
+		root.mandelbrot_img = mlx_new_image(root.mlx, root.width, root.height);
+		mlx_image_to_window(root.mlx, root.mandelbrot_img, 0, root.height);
 		create_mandelbrot_picture(&root);
 		mlx_loop_hook(root.mlx, mouse_hook, &root);
 	}
