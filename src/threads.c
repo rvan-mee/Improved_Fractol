@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/04 13:25:32 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/08/07 12:45:09 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/08/07 20:30:44 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	update_image(t_root *root)
 	root->y = 0;
 	while (i < THREADS)
 	{
-		pthread_create(&threadpool[i], NULL, change_image, root);
+		pthread_create(&threadpool[i], NULL, update_fractal, root);
 		i++;
 	}
 	i = 0;
@@ -31,7 +31,7 @@ void	update_image(t_root *root)
 		i++;
 	}
 	if (root->set == MOUSE)
-		create_mandelbrot_picture(root);
+		update_mandelbrot_picture(root);
 }
 
 void	init_mutexes(t_root *root)

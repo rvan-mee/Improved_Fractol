@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   change_image.c                                     :+:    :+:            */
+/*   update_fractal.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/04 13:27:09 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/08/07 13:51:10 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/08/07 20:37:34 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	fractal(t_root *root, int x, int y)
 
 // Loops through all the possible pixels given the set 
 // (root->height) and (root->width) defined in main.
-void	*change_image(void *param)
+void	*update_fractal(void *param)
 {
 	t_root		*root;
 	uint32_t	x;

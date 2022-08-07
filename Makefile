@@ -1,17 +1,17 @@
-SRC =	main.c			\
-		change_image.c	\
-		color.c			\
-		ft_atof.c		\
-		ft_atosign.c	\
-		julia.c			\
-		key_hook.c		\
-		mandelbrot.c	\
-		mouse_hook.c	\
-		parsing.c		\
-		vela.c			\
-		threads.c		\
-		mouse_set.c		\
-		hsv.c			\
+SRC =	main.c						\
+		update_fractal.c			\
+		color.c						\
+		ft_atof.c					\
+		ft_atosign.c				\
+		julia.c						\
+		key_hook.c					\
+		mandelbrot.c				\
+		mouse_hook.c				\
+		parsing.c					\
+		vela.c						\
+		threads.c					\
+		mouse_set.c					\
+		hsv.c						\
 		
 TARGET = fractol
 OBJDIR = objs

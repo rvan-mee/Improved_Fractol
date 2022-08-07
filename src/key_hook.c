@@ -6,14 +6,14 @@
 /*   By: rvan-mee <rvan-mee@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/07 13:30:28 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/08/07 20:19:18 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/08/07 20:36:55 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
 
 // Cycles through the colors initiated in the function init_colors (main.c).
-static void	single_change_image(t_root *root)
+static void	change_static_color_option(t_root *root)
 {
 	static int	i = 1;
 
@@ -27,7 +27,7 @@ static void	single_change_image(t_root *root)
 // (rainbow or single).
 // If pressed again will changed the current colors 
 // apearing on screen in the selected mode.
-static void	set_change_image_type(int key, t_root *root)
+static void	change_color_type(int key, t_root *root)
 {
 	static int	i;
 
@@ -42,7 +42,7 @@ static void	set_change_image_type(int key, t_root *root)
 	else if (key == MLX_KEY_C)
 	{
 		root->r_screen.color_type = 1;
-		single_change_image(root);
+		change_static_color_option(root);
 	}
 	else
 		root->r_screen.color_type = 2;
@@ -102,11 +102,9 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 		root->r_screen.x_offset -= (long double)OFFSET / set_zoom_offset(root);
 	else if (key == RIGHT && keydata.action == PRESS && root->set != MOUSE)
 		root->r_screen.x_offset += (long double)OFFSET / set_zoom_offset(root);
-	else if (keydata.action == PRESS && (key == C || key == B || \
-			(key == R && root->set != MOUSE)))
-		set_change_image_type(keydata.key, root);
-	else if ((key == P_UP || \
-			key == P_DOWN) && keydata.action == PRESS)
+	else if (keydata.action == PRESS && (key == C || key == B || key == R))
+		change_color_type(keydata.key, root);
+	else if ((key == P_UP || key == P_DOWN) && keydata.action == PRESS)
 		set_iteri(key, root);
 	if ((key == RIGHT || key == LEFT || key == DOWN || key == UP \
 		|| key == R || key == C || key == P_DOWN || key == P_UP \

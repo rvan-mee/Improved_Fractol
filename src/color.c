@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/07 13:39:30 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/08/07 17:51:11 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/08/07 20:27:49 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	color(int r, int g, int b)
 	return ((r << 24 | g << 16 | b << 8) + 255);
 }
 
-static void	split_rgb(int32_t base_color, int32_t *r, int32_t *g, int32_t *b)
+void	split_rgb(int32_t base_color, int32_t *r, int32_t *g, int32_t *b)
 {
 	*r = base_color >> 24 & 0xFF;
 	*g = base_color >> 16 & 0xFF;

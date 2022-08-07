@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/07 13:26:20 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/08/07 20:18:09 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/08/07 20:25:16 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int	main(int argc, char *argv[])
 	{
 		root.mandelbrot_img = mlx_new_image(root.mlx, root.width, root.height);
 		mlx_image_to_window(root.mlx, root.mandelbrot_img, 0, root.height);
-		create_mandelbrot_picture(&root);
+		update_mandelbrot_picture(&root);
 		mlx_loop_hook(root.mlx, mouse_hook, &root);
 	}
 	mlx_loop(root.mlx);

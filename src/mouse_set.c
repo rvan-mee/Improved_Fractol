@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/04 15:41:04 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/08/07 13:50:26 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/08/07 20:27:24 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,27 @@ static void	put_single_color_mouse(t_root *root, int x, int y, int i)
 	}
 }
 
-void	create_mandelbrot_picture(t_root *root)
+static void	put_rainbow_mouse(t_root *root, int x, int y, int i)
+{
+	int		new_color;
+	int32_t	r;
+	int32_t	g;
+	int32_t	b;
+
+	new_color = 0;
+	split_rgb(root->r_screen.color, &r, &g, &b);
+	if (i == root->r_screen.iteri + 1)
+	{
+		mlx_put_pixel(root->mandelbrot_img, x, y, 255);
+		return ;
+	}
+	new_color = get_rainbow_color(root, i);
+	if (new_color < 0xFFF)
+		new_color += 0x0F0F0FFF;
+	mlx_put_pixel(root->mandelbrot_img, x, y, new_color);
+}
+
+void	update_mandelbrot_picture(t_root *root)
 {
 	t_mandel	mandel;
 
@@ -84,7 +104,9 @@ void	create_mandelbrot_picture(t_root *root)
 			root->r_screen.y_scale + root->r_screen.y_offset;
 			mandelbrot_helper(root, &mandel.i, mandel.i_start, mandel.r_start);
 			mandel.pei = (double)mandel.i / root->r_screen.iteri * 255;
-			if (root->r_screen.color_type == 1)
+			if (root->r_screen.color_type == 0)
+				put_rainbow_mouse(root, mandel.x, mandel.y, mandel.i);
+			else if (root->r_screen.color_type == 1)
 				put_single_color_mouse(root, mandel.x, mandel.y, mandel.i);
 			else if (root->r_screen.color_type == 2)
 				put_black_white_mouse(root, mandel.x, mandel.y, mandel.i);

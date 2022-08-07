@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/10 12:03:37 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/08/07 20:07:22 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/08/07 20:30:09 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ void		update_image(t_root *root);
 void		init_mutexes(t_root *root);
 
 int			color(int r, int g, int b);
+void		split_rgb(int32_t base_color, int32_t *r, int32_t *g, int32_t *b);
 int32_t		get_rainbow_color(t_root *root, size_t i);
 void		put_rainbow(t_root *root, int x, int y, int i);
 void		put_black_to_white(t_root *root, int x, int y, int i);
@@ -155,9 +156,9 @@ int			julia(t_root *root, long double x, long double y);
 
 void		drag_hook(void *param);
 void		mouse_hook(void *param);
-void		create_mandelbrot_picture(t_root *root);
+void		update_mandelbrot_picture(t_root *root);
 
-void		*change_image(void *param);
+void		*update_fractal(void *param);
 
 long double	ft_atof(char *str, int i_check);
 long double	ft_atosign(char *sign);
