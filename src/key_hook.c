@@ -3,7 +3,7 @@
 // Cycles through the colors initiated in the function init_colors (main.c).
 static void	single_change_image(t_root *root)
 {
-	static int	i;
+	static int	i = 1;
 
 	if (i > 5)
 		i = 0;
@@ -89,11 +89,11 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 		root->r_screen.x_offset -= (long double)OFFSET / set_zoom_offset(root);
 	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS && root->set != MOUSE)
 		root->r_screen.x_offset += (long double)OFFSET / set_zoom_offset(root);
-	else if ((keydata.key == MLX_KEY_C || keydata.key == MLX_KEY_R \
+	else if ((keydata.key == MLX_KEY_C || (keydata.key == MLX_KEY_R  && root->set != MOUSE)
 			|| keydata.key == MLX_KEY_B) && keydata.action == MLX_PRESS)
 		set_change_image_type(keydata.key, root);
 	else if ((keydata.key == MLX_KEY_PAGE_UP || \
-			keydata.key == MLX_KEY_PAGE_DOWN) && keydata.action == MLX_PRESS && root->set != MOUSE)
+			keydata.key == MLX_KEY_PAGE_DOWN) && keydata.action == MLX_PRESS)
 		set_iteri(keydata.key, root);
 	if ((keydata.key == MLX_KEY_RIGHT || keydata.key == MLX_KEY_LEFT || \
 		keydata.key == MLX_KEY_DOWN || keydata.key == MLX_KEY_R \

@@ -99,6 +99,8 @@ int	main(int argc, char *argv[])
 	}
 	else
 	{
+		root.mouse_mandelbrot_img = mlx_new_image(root.mlx, WIDTH, HEIGHT);
+		mlx_image_to_window(root.mlx, root.mouse_mandelbrot_img, 0, HEIGHT);
 		create_mandelbrot_picture(&root);
 		mlx_loop_hook(root.mlx, mouse_hook, &root);
 	}

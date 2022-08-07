@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/04 13:25:32 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/08/04 13:29:36 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/08/07 12:45:09 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	update_image(t_root *root)
 		pthread_join(threadpool[i], NULL);
 		i++;
 	}
+	if (root->set == MOUSE)
+		create_mandelbrot_picture(root);
 }
 
 void	init_mutexes(t_root *root)
