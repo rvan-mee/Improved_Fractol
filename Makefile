@@ -11,6 +11,7 @@ SRC =	main.c			\
 		vela.c			\
 		threads.c		\
 		mouse_set.c		\
+		hsv.c			\
 		
 TARGET = fractol
 OBJDIR = objs

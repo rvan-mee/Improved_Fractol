@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/07 13:39:30 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/08/07 13:39:30 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/08/07 17:51:11 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,33 @@ int	color(int r, int g, int b)
 	return ((r << 24 | g << 16 | b << 8) + 255);
 }
 
+static void	split_rgb(int32_t base_color, int32_t *r, int32_t *g, int32_t *b)
+{
+	*r = base_color >> 24 & 0xFF;
+	*g = base_color >> 16 & 0xFF;
+	*b = base_color >> 8 & 0xFF;
+}
+
 // Depending on the Iterations vs Max Iterations sets the color to black
 // or sets the color to change in a much more rapid way then the single 
 // version of this function.
 void	put_rainbow(t_root *root, int x, int y, int i)
 {
-	int	new_color;
+	int		new_color;
+	int32_t	r;
+	int32_t	g;
+	int32_t	b;
 
 	new_color = 0;
+	split_rgb(root->r_screen.color, &r, &g, &b);
 	if (i == root->r_screen.iteri + 1)
 	{
 		mlx_put_pixel(root->img, x, y, 255);
 		return ;
 	}
-	if (i < (root->r_screen.iteri / 3) * 1)
-		new_color += color(i * 2, i * root->r_screen.color, i / 2);
-	else if (i < (root->r_screen.iteri / 3) * 2)
-		new_color += color(i * 2, i * 2, i * root->r_screen.color);
-	else if (i > (root->r_screen.iteri / 3) * 2)
-		new_color += color(i * root->r_screen.color, i, i / 2);
-	if (new_color < 40)
-		new_color += 0x0F000FFF;
+	new_color = get_rainbow_color(root, i);
+	if (new_color < 0xFFF)
+		new_color += 0x0F0F0FFF;
 	mlx_put_pixel(root->img, x, y, new_color);
 }
 

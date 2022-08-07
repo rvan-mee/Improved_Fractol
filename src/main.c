@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/07 13:26:20 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/08/07 13:53:07 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/08/07 20:18:09 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 // Initiate all the base colors for the rainbow mode.
 static void	init_rainbow_colors(t_root *root)
 {
-	root->r_screen.rainbow_base[0] = 0x0000F00FF;
-	root->r_screen.rainbow_base[1] = 0x00F00F0FF;
-	root->r_screen.rainbow_base[2] = 0x0000000FF;
-	root->r_screen.rainbow_base[3] = 0x000FFFFFF;
-	root->r_screen.rainbow_base[4] = 0x00000FFFF;
-	root->r_screen.rainbow_base[5] = 0x000FFFFFF;
-	root->r_screen.rainbow_base[6] = 0x000FF00FF;
-	root->r_screen.rainbow_base[7] = 0x0000F00FF;
-	root->r_screen.rainbow_base[8] = 0x00020F6DA;
-	root->r_screen.rainbow_base[9] = 0x00000277D;
-	root->r_screen.rainbow_base[10] = 0x000F00FF;
+	root->r_screen.rainbow_base[0] = 0x2CDDB2FF;
+	root->r_screen.rainbow_base[1] = 0x00FF00FF;
+	root->r_screen.rainbow_base[2] = 0x0000FFFF;
+	root->r_screen.rainbow_base[3] = 0x00FFFFFF;
+	root->r_screen.rainbow_base[4] = 0xFF00FFFF;
+	root->r_screen.rainbow_base[5] = 0xFFFF00FF;
+	root->r_screen.rainbow_base[6] = 0xFF0000FF;
+	root->r_screen.rainbow_base[7] = 0xF59DAFFF;
+	root->r_screen.rainbow_base[8] = 0xE71BD6FF;
+	root->r_screen.rainbow_base[9] = 0x33D1C6FF;
+	root->r_screen.rainbow_base[10] = 0xF1EE2CFF;
 }
 
 // Initiate all the color options.

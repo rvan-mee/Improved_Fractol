@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/10 12:03:37 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/08/07 14:35:02 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/08/07 20:07:22 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,25 @@ typedef struct s_scroll {
 	int32_t		y;
 }	t_scroll;
 
+typedef struct s_hsv {
+	float	h_increase;
+	float	h_priem;
+	float	r;
+	float	g;
+	float	b;
+	float	h;
+	float	s;
+	float	v;	
+	float	c;
+	float	m;
+	float	x;
+	float	r1;
+	float	g1;
+	float	b1;
+	float	x_min;
+	float	x_max;
+}	t_hsv;
+
 int			main(int argc, char *argv[]);
 void		exit_error(char *error_message);
 void		check_input(int argc, char **argv, t_root *root);
@@ -123,6 +142,7 @@ void		update_image(t_root *root);
 void		init_mutexes(t_root *root);
 
 int			color(int r, int g, int b);
+int32_t		get_rainbow_color(t_root *root, size_t i);
 void		put_rainbow(t_root *root, int x, int y, int i);
 void		put_black_to_white(t_root *root, int x, int y, int i);
 void		put_single_color(t_root *root, int x, int y, int i);
