@@ -25,7 +25,7 @@ OBJ = $(addprefix objs/, $(SRC:.c=.o))
 MLX = ./MLX42/
 MLX_LIB = $(addprefix $(MLX), libmlx42.a)
 MLX_INC = -I ./MLX42/include
-CFLAGS = -Wall -Werror -Wextra -pthread -Ofast $(INC) -fsanitize=address -g
+CFLAGS = -Wall -Werror -Wextra -pthread -Ofast $(INC) -g
 # -fsanitize=address -g
 # -fsanitize=thread -g
 

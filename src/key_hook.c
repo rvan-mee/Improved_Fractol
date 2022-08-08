@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/07 13:30:28 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/08/07 20:36:55 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/08/08 15:12:25 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,10 @@ static void	change_static_color_option(t_root *root)
 // apearing on screen in the selected mode.
 static void	change_color_type(int key, t_root *root)
 {
-	static int	i;
-
 	if (key == MLX_KEY_R)
 	{
-		if (i > 10)
-			i = 0;
 		root->r_screen.color_type = 0;
-		root->r_screen.color = root->r_screen.rainbow_base[i];
-		i++;
+		root->r_screen.color = rand();
 	}
 	else if (key == MLX_KEY_C)
 	{

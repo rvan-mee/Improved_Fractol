@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/10 12:03:37 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/08/07 20:30:09 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/08/08 15:09:40 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ typedef struct s_screen {
 	int32_t		color;
 	int32_t		all_options;
 	int32_t		options[7][3];
-	int32_t		rainbow_base[11];
 	int32_t		color_type;
 	int32_t		iteri;
 	long double	x_scale;

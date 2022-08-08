@@ -6,27 +6,11 @@
 /*   By: rvan-mee <rvan-mee@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/07 13:26:20 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/08/07 20:25:16 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/08/08 15:09:53 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-// Initiate all the base colors for the rainbow mode.
-static void	init_rainbow_colors(t_root *root)
-{
-	root->r_screen.rainbow_base[0] = 0x2CDDB2FF;
-	root->r_screen.rainbow_base[1] = 0x00FF00FF;
-	root->r_screen.rainbow_base[2] = 0x0000FFFF;
-	root->r_screen.rainbow_base[3] = 0x00FFFFFF;
-	root->r_screen.rainbow_base[4] = 0xFF00FFFF;
-	root->r_screen.rainbow_base[5] = 0xFFFF00FF;
-	root->r_screen.rainbow_base[6] = 0xFF0000FF;
-	root->r_screen.rainbow_base[7] = 0xF59DAFFF;
-	root->r_screen.rainbow_base[8] = 0xE71BD6FF;
-	root->r_screen.rainbow_base[9] = 0x33D1C6FF;
-	root->r_screen.rainbow_base[10] = 0xF1EE2CFF;
-}
 
 // Initiate all the color options.
 static void	init_options(t_root *root)
@@ -56,7 +40,6 @@ static void	init_options(t_root *root)
 static int	init_mlx(t_root *root)
 {
 	init_options(root);
-	init_rainbow_colors(root);
 	root->mlx = mlx_init(root->width, root->height, "fract-ol", true);
 	if (root->set == MOUSE)
 		root->height /= 2;

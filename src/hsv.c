@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/07 17:43:57 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/08/07 20:33:39 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/08/08 18:21:46 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,13 @@ int32_t	get_rainbow_color(t_root *root, size_t i)
 {
 	t_hsv	hsv_data;
 
-	hsv_data.h_increase = 1.0 / 6.0 / ((i % 255) / 12.66);
+	hsv_data.h_increase = fmod(1.0 / 6.0 * (i % 255), 1.0);
 	split_rgb_hsv(root->r_screen.color, &hsv_data);
 	rgb_to_hsv(&hsv_data);
 	hsv_data.h = fmod(hsv_data.h + hsv_data.h_increase * 255 / 4.0 + 1.0, 1.0);
+	hsv_data.v = 1.0;
+	if (hsv_data.s < 0.5)
+		hsv_data.s = 0.5;
 	hsv_to_rgb(&hsv_data);
 	return (color(hsv_data.r * 255, hsv_data.g * 255, hsv_data.b * 255));
 }
