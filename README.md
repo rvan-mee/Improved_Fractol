@@ -15,7 +15,7 @@ An improved version of my fractal exploration program for 42 Codam's project fra
 - .bmp file export
 
 ## Installation and Usage:
-Install the necessary packages for (MLX)[https://github.com/codam-coding-college/MLX42#readme]
+Install the necessary packages for [MLX](https://github.com/codam-coding-college/MLX42#readme)
 To create the executable:
 ```sh
 make
