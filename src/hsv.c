@@ -6,11 +6,12 @@
 /*   By: rvan-mee <rvan-mee@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/07 17:43:57 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/08/10 13:50:47 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/08/11 15:07:49 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
+#include <hsv.h>
 
 static void	rgb_to_hsv(t_hsv *hsv_data)
 {

@@ -6,11 +6,12 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/04 14:12:08 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/08/07 13:20:53 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/08/11 15:05:23 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
+#include <mouse.h>
 
 // zooms in by making the values smaller with
 // a set amount of (ZOOM) defined in the headerfile.

@@ -35,6 +35,7 @@ all: $(TARGET)
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S), Linux)
 	MLXFLAGS = -ldl -lglfw
+	CFLAGS += -Wunused-result
 else ifeq ($(UNAME_S), Darwin)
 	MLXFLAGS = -lglfw -L /Users/$(USER)/.brew/opt/glfw/lib/
 endif
