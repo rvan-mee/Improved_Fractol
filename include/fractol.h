@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/10 12:03:37 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/08/08 15:09:40 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/08/11 13:08:28 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define LEFT MLX_KEY_LEFT
 # define RIGHT MLX_KEY_RIGHT
 # define PRESS MLX_PRESS
+# define P MLX_KEY_P
 # define C MLX_KEY_C
 # define B MLX_KEY_B
 # define R MLX_KEY_R
@@ -55,6 +56,13 @@ typedef struct s_julia {
 	long double	x;
 	long double	y;
 }	t_julia;
+
+typedef struct rgb
+{
+	int8_t	red;
+	int8_t	green;
+	int8_t	blue;
+}	t_rgb;
 
 typedef struct s_screen {
 	int32_t		color;
@@ -140,8 +148,10 @@ void		scroll_hook(double xdelta, double ydelta, void *param);
 void		update_image(t_root *root);
 void		init_mutexes(t_root *root);
 
-int			color(int r, int g, int b);
-void		split_rgb(int32_t base_color, int32_t *r, int32_t *g, int32_t *b);
+void		create_picture(t_root *root);
+
+int			rgb_to_int(int r, int g, int b);
+t_rgb		split_rgb(int32_t base_color);
 int32_t		get_rainbow_color(t_root *root, size_t i);
 void		put_rainbow(t_root *root, int x, int y, int i);
 void		put_black_to_white(t_root *root, int x, int y, int i);

@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/04 15:41:04 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/08/07 20:27:24 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/08/11 14:18:36 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	put_black_white_mouse(t_root *root, int x, int y, int i)
 		mlx_put_pixel(root->mandelbrot_img, x, y, 0xFFFFFFFF);
 		return ;
 	}
-	mlx_put_pixel(root->mandelbrot_img, x, y, color(pei, pei, pei));
+	mlx_put_pixel(root->mandelbrot_img, x, y, rgb_to_int(pei, pei, pei));
 }
 
 static void	put_single_color_mouse(t_root *root, int x, int y, int i)
@@ -61,7 +61,7 @@ static void	put_single_color_mouse(t_root *root, int x, int y, int i)
 	else
 	{
 		mlx_put_pixel(root->mandelbrot_img, x, y,
-			color(root->r_screen.options[j][0] * pei,
+			rgb_to_int(root->r_screen.options[j][0] * pei,
 				root->r_screen.options[j][1] * pei,
 				root->r_screen.options[j][2] * pei));
 	}
@@ -70,12 +70,7 @@ static void	put_single_color_mouse(t_root *root, int x, int y, int i)
 static void	put_rainbow_mouse(t_root *root, int x, int y, int i)
 {
 	int		new_color;
-	int32_t	r;
-	int32_t	g;
-	int32_t	b;
 
-	new_color = 0;
-	split_rgb(root->r_screen.color, &r, &g, &b);
 	if (i == root->r_screen.iteri + 1)
 	{
 		mlx_put_pixel(root->mandelbrot_img, x, y, 255);

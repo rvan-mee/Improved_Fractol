@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/07 17:43:57 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/08/08 18:21:46 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/08/10 13:50:47 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,5 @@ int32_t	get_rainbow_color(t_root *root, size_t i)
 	if (hsv_data.s < 0.5)
 		hsv_data.s = 0.5;
 	hsv_to_rgb(&hsv_data);
-	return (color(hsv_data.r * 255, hsv_data.g * 255, hsv_data.b * 255));
+	return (rgb_to_int(hsv_data.r * 255, hsv_data.g * 255, hsv_data.b * 255));
 }

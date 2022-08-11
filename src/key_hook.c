@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/07 13:30:28 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/08/08 15:12:25 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/08/10 14:37:44 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 		change_color_type(keydata.key, root);
 	else if ((key == P_UP || key == P_DOWN) && keydata.action == PRESS)
 		set_iteri(key, root);
+	else if (key == P && keydata. action == PRESS)
+		create_picture(root);
 	if ((key == RIGHT || key == LEFT || key == DOWN || key == UP \
 		|| key == R || key == C || key == P_DOWN || key == P_UP \
 		|| key == B) && keydata.action == PRESS)

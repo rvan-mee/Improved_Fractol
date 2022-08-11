@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/07 13:39:30 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/08/07 20:27:49 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/08/10 13:53:11 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,19 @@
 
 // Returns a color's RGB value based on the input R G and B.
 // Max values should be 255 per color.
-int	color(int r, int g, int b)
+int	rgb_to_int(int r, int g, int b)
 {
 	return ((r << 24 | g << 16 | b << 8) + 255);
 }
 
-void	split_rgb(int32_t base_color, int32_t *r, int32_t *g, int32_t *b)
+t_rgb	split_rgb(int32_t base_color)
 {
-	*r = base_color >> 24 & 0xFF;
-	*g = base_color >> 16 & 0xFF;
-	*b = base_color >> 8 & 0xFF;
+	t_rgb	rgb;
+
+	rgb.red = base_color >> 24 & 0xFF;
+	rgb.green = base_color >> 16 & 0xFF;
+	rgb.blue = base_color >> 8 & 0xFF;
+	return (rgb);
 }
 
 // Depending on the Iterations vs Max Iterations sets the color to black
@@ -32,12 +35,8 @@ void	split_rgb(int32_t base_color, int32_t *r, int32_t *g, int32_t *b)
 void	put_rainbow(t_root *root, int x, int y, int i)
 {
 	int		new_color;
-	int32_t	r;
-	int32_t	g;
-	int32_t	b;
 
 	new_color = 0;
-	split_rgb(root->r_screen.color, &r, &g, &b);
 	if (i == root->r_screen.iteri + 1)
 	{
 		mlx_put_pixel(root->img, x, y, 255);
@@ -62,7 +61,7 @@ void	put_black_to_white(t_root *root, int x, int y, int i)
 		mlx_put_pixel(root->img, x, y, 0xFFFFFFFF);
 		return ;
 	}
-	mlx_put_pixel(root->img, x, y, color(pei, pei, pei));
+	mlx_put_pixel(root->img, x, y, rgb_to_int(pei, pei, pei));
 }
 
 // Depending on the Iterations vs Max Iterations sets the color to black
@@ -79,7 +78,7 @@ void	put_single_color(t_root *root, int x, int y, int i)
 	else
 	{
 		mlx_put_pixel(root->img, x, y,
-			color(root->r_screen.options[j][0] * pei,
+			rgb_to_int(root->r_screen.options[j][0] * pei,
 				root->r_screen.options[j][1] * pei,
 				root->r_screen.options[j][2] * pei));
 	}
