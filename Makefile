@@ -61,6 +61,10 @@ clean:
 	@make -C MLX42 clean
 	@rm -f $(OBJ)
 
+pclean: clean
+	@echo Cleaning bmp files
+	@rm -f fractol*.bmp
+
 fclean: clean
 	@echo Cleaning All Remaining Files
 	@make -C MLX42 fclean

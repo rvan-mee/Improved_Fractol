@@ -41,7 +41,7 @@ static int32_t	write_bmp_header(int32_t fd, t_root *root, t_bmp_data bmp_data)
 static int32_t	create_new_bmp_file(t_root *root)
 {
 	int32_t				fd;
-	char				*filename;
+	char				filename[256];
 	static const char	*sets[] = {
 		"mandelbrot",
 		"Julia",
@@ -49,11 +49,10 @@ static int32_t	create_new_bmp_file(t_root *root)
 		"Mouse"
 	};
 
-	asprintf(&filename, "fractol_%s_color:0x%x_offset:\
+	sprintf(filename, "fractol_%s_color:0x%x_offset:\
 %Lf_Coords:%Lf_Zoom:%Lf.bmp", sets[root->set], root->r_screen.color, \
 root->r_screen.x_offset, root->r_screen.y_offset, root->r_screen.zoom);
 	fd = open(filename, O_RDWR | O_CREAT | O_EXCL, 0664);
-	free(filename);
 	if (fd == -1)
 	{
 		fprintf(stderr, "error: %s\n", strerror(errno));
@@ -84,7 +83,7 @@ static void	write_color_data(int32_t fd, t_root *root, t_bmp_data data)
 
 	i = 0;
 	y = root->height - 1;
-	while (y >= 0)
+	while (1)
 	{
 		x = 0;
 		while (x < root->width)
