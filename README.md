@@ -12,8 +12,11 @@ An improved version of my fractal exploration program for 42 Codam's project fra
 - Multithreading
 - Mouse tracking Julia set
 - Drag & drop the mouse to move around
+- .bmp file export
 
 ## Installation and Usage:
+Install the necessary packages for [MLX](https://github.com/codam-coding-college/MLX42#readme)
+
 To create the executable:
 ```sh
 make
@@ -30,8 +33,9 @@ Features:
 - Use the arrow keys to move around
 - Zoom into and out of the mouse position with the scroll wheel
 - Press 'B' to enter Black & White mode
-- Press 'C' To change to a static color
-- Press 'R' To change to rainbow mode (Multiple options)
+- Press 'C' to change to a static color
+- Press 'R' to change to rainbow mode (Multiple options)
+- Press 'P' to export the current view as a .bmp file
 - Press 'PAGE UP' or 'PAGE DOWN' to change the iteration count used in the calculation
 ```
 ## Screenshots:
