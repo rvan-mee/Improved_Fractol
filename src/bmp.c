@@ -31,7 +31,7 @@ static int32_t	write_bmp_header(int32_t fd, t_root *root, t_bmp_data bmp_data)
 	header.image_size_bytes = bmp_data.data_size;
 	if (write(fd, &header, sizeof(t_bmp_file_header)) == -1)
 	{
-		printf("error: %s\n", strerror(errno));
+		fprintf(stderr, "error: %s\n", strerror(errno));
 		fprintf(stderr, "Writing to BMP file failed\n");
 		return (-1);
 	}

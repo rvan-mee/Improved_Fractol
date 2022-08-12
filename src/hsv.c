@@ -81,6 +81,7 @@ int32_t	get_rainbow_color(t_root *root, size_t i)
 {
 	t_hsv	hsv_data;
 
+	hsv_data.h = 0;
 	hsv_data.h_increase = fmod(1.0 / 6.0 * (i % 255), 1.0);
 	split_rgb_hsv(root->r_screen.color, &hsv_data);
 	rgb_to_hsv(&hsv_data);

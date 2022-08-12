@@ -100,7 +100,6 @@ typedef struct s_mandel {
 	uint32_t	y;
 }	t_mandel;
 
-int			main(int argc, char *argv[]);
 void		exit_error(char *error_message);
 void		check_input(int argc, char **argv, t_root *root);
 void		key_hook(mlx_key_data_t keydata, void *param);

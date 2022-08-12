@@ -26,7 +26,7 @@ OBJ = $(addprefix objs/, $(SRC:.c=.o))
 MLX = ./MLX42/
 MLX_LIB = $(addprefix $(MLX), libmlx42.a)
 MLX_INC = -I ./MLX42/include
-CFLAGS = -Wall -Werror -Wextra -pthread -Ofast $(INC) -fsanitize=address -g
+CFLAGS = -Wall -Werror -Wextra -pthread -Ofast $(INC)
 # -fsanitize=address -g
 # -fsanitize=thread -g
 
@@ -45,7 +45,7 @@ $(TARGET): $(OBJ)
 	@echo "Compiling main executable"
 	@$(CC) $(OBJ) $(CFLAGS) $(INC) $(MLX_INC) $(MLX_LIB) $(MLXFLAGS) -lm -o $(TARGET)
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c $(INCLUDE_DIR)/fractol.h $(INCLUDE_DIR)/bmp.h
+$(OBJDIR)/%.o: $(SRCDIR)/%.c $(INCLUDE_DIR)/* Makefile
 	@mkdir -p $(dir $@)
 	@echo "Compiling: $<"
 	@$(CC) $(CFLAGS) $(INC) $(MLX_INC) -c -o $@ $<
